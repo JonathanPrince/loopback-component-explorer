@@ -73,6 +73,9 @@ function routes(loopbackApplication, options) {
     if (!source) {
       source = req.originalUrl.replace(/\/config.json(\?.*)?$/, '');
     }
+    if (/\/index\.html/.test(source)) {
+      source = source.replace(/\/index\.html.*/, '');
+    }
     res.send({
       url: urlJoin(source, '/' + options.resourcePath),
     });
